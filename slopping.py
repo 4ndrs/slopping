@@ -26,7 +26,9 @@ if __name__ == "__main__":
     WINDOW_XY = tuple(
         int(n)
         for n in re.search(
-            r"Absolute.*X:\s+(\d+).*Absolute.*Y:\s+(\d+)", WINDOW_XY, re.DOTALL
+            r"Absolute.*X:\s+([-]?\d+).*Absolute.*Y:\s+([-]?\d+)",
+            WINDOW_XY,
+            re.DOTALL,
         ).groups()
     )
 
