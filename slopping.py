@@ -4,12 +4,17 @@
 """A script to make cropping easy when ffmpeg'ing.
    Needs slop, xdotool, and xwininfo.
 
-   Usage: ffmpeg -i input -vf crop=$(slopping) output"""
+   Usage: ffmpeg -i input -vf crop=$(slopping) output
+
+   To generate a PIL.Image crop tuple, pass 'pil' as argument: slopping pil"""
 
 from subprocess import check_output
+from sys import argv
 import re
 
 if __name__ == "__main__":
+    PIL = "pil" in argv
+
     CROP = check_output(["slop", "-f", "%w %h %x %y"]).decode()
     CROP = tuple(int(n) for n in CROP.split())  # (w, h, x, y)
 
@@ -33,6 +38,15 @@ if __name__ == "__main__":
 
     # Print format without newline for ffmpeg: w:h:x:y
     SEPARATOR = ":"
+
+    if PIL:
+        # RIGHT_X = CROP_X + CROP_WIDTH, RIGHT_Y = CROP_Y + CROP_HEIGHT
+        # CROP_X, CROP_Y, RIGHT_X, RIGHT_Y
+        CROP = CROP[2:] + (CROP[0] + CROP[2], CROP[1] + CROP[3])
+
+        # Print format for PIL.Image crop's tuple: x, y, x, y
+        SEPARATOR = ", "
+
     for i, n in enumerate(CROP):
         print(n, end="")
         if i < 3:
