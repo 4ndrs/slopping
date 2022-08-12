@@ -1,5 +1,9 @@
 # slopping
-Usage: ffmpeg -i input -vf crop=$(slopping) output
+
+## Usage
+```zsh
+$ ffmpeg -i input -vf crop=$(slopping) output
+```
 
 [slopping_and_ffmpeg.webm](https://user-images.githubusercontent.com/31898900/180082865-dfd17cc2-be30-433d-a6ef-dc1f575510d4.webm)
 

@@ -1,0 +1,27 @@
+[build-system]
+requires = ['hatchling']
+build-backend = 'hatchling.build'
+
+[project]
+name = 'slopping'
+version = '1.0.0'
+authors = [
+    { name='4ndrs', email='andres.degozaru@gmail.com' },
+]
+description = 'Script to feed cropping coordinates to ffmpeg (or a PIL.Image crop)'
+readme = 'README.md'
+license = { file='LICENSE' }
+requires-python = '>=3.10'
+classifiers = [
+    'Programming Language :: Python :: 3',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: POSIX :: Linux',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+]
+
+[project.scripts]
+slopping = 'slopping.__main__:main'
+
+[project.urls]
+'Homepage' = 'https://github.com/4ndrs/slopping'
+'Bug Tracker' = 'https://github.com/4ndrs/slopping/issues'
