@@ -1,5 +1,5 @@
 # slopping
-A script to make cropping easy when ffmpeg'ing. Needs slop, xdotool, and xwininfo.
+A script to make cropping easy when ffmpeg'ing. Needs slop, libxdo (xdotool), and xwininfo.
 
 ## Usage
 ```console

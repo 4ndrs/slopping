@@ -4,6 +4,8 @@
 from subprocess import check_output  # nosec
 import re
 
+from .xdo import get_window_id
+
 
 def crop(argv="ffmpeg"):
     """Returns cropping coordinates as a tuple, argv can be either "ffmpeg" or
@@ -14,8 +16,7 @@ def crop(argv="ffmpeg"):
     crop_ = tuple(int(n) for n in crop_.split())  # (w, h, x, y)
 
     # The mouse pointer needs to be hovering the video we are cropping
-    window_id = check_output(["xdotool", "getmouselocation", "--shell"])
-    window_id = re.search(rb".*WINDOW=(\d+)", window_id).groups()[0]
+    window_id = str(get_window_id())
 
     window_xy = check_output(["xwininfo", "-id", window_id]).decode()
     window_xy = tuple(
